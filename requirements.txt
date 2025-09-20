@@ -1,0 +1,13 @@
+# Core deep learning (MPS/Metal supported build for Mac)
+torch
+torchvision
+torchaudio
+
+# Image processing
+Pillow>=10.0.0
+
+# Progress bar
+tqdm>=4.66.0
+
+# Optional but recommended
+numpy>=1.26.0

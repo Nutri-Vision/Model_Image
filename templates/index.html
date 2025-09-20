@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Classifier</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        .container { max-width: 500px; margin: auto; }
+        h1 { text-align: center; }
+        form { text-align: center; margin-bottom: 20px; }
+        .result { background: #f2f2f2; padding: 15px; border-radius: 8px; }
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Food Classifier</h1>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <br><br>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            <h3>Prediction:</h3>
+            <p>{{ prediction }}</p>
+
+            {% if nutrition %}
+            <h4>Nutrition:</h4>
+            <ul>
+                <li>Calories: {{ nutrition.calories }}</li>
+                <li>Carbs: {{ nutrition.carbs }} g</li>
+                <li>Protein: {{ nutrition.protein }} g</li>
+                <li>Fat: {{ nutrition.fat }} g</li>
+            </ul>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
