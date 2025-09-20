@@ -36,27 +36,26 @@ food_classifier/
 
 1. Clone the repository:
 
-```bash
 git clone https://github.com/Nutri-Vision/Model_Nvision.git
 cd food_classifier
 Create and activate a virtual environment:
 python3 -m venv v1
 source v1/bin/activate  # macOS/Linux
-v1\Scripts\activate     # Windows
-Install dependencies:
+v1\Scripts\activate # Windows
+
+
+2. Install dependencies:
 pip install -r requirements.txt
 (Optional) Install Git LFS for handling large .pth models:
 git lfs install
 
-## Inference
+3. Inference
 python main.py
 Modify IMAGE_PATH in main.py to test different images.
 Outputs class prediction and confidence.
 Uses model1/best_model.pth and model1/class_mapping.json.
 
-
-## Web App (Optional)
+4. Web App (Optional)
 python app.py
-Open http://127.0.0.1:5001 in your browser.
 Upload an image to get predicted food class and nutritional info.
 
