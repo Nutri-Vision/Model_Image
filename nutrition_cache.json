@@ -1,0 +1,35 @@
+{
+  "apple": {
+    "Calcium, Ca": 0.0,
+    "Iron, Fe": 0.23,
+    "Sodium, Na": 0.0,
+    "Vitamin A, IU": 65.0,
+    "Vitamin C, total ascorbic acid": 3.1,
+    "Cholesterol": 0.0,
+    "Fatty acids, total saturated": 0.0,
+    "Protein": 0.0,
+    "Carbohydrate, by difference": 14.3,
+    "Energy": 52.0,
+    "Total Sugars": 10.4,
+    "Fiber, total dietary": 3.2,
+    "Potassium, K": 110,
+    "Fatty acids, total trans": 0.0,
+    "Total lipid (fat)": 0.65
+  },
+  "omelette": {
+    "Protein": 1.6,
+    "Total lipid (fat)": 0.8,
+    "Carbohydrate, by difference": 11.2,
+    "Energy": 56.0,
+    "Total Sugars": 7.2,
+    "Fiber, total dietary": 2.4,
+    "Calcium, Ca": 8.0,
+    "Iron, Fe": 0.0,
+    "Sodium, Na": 200,
+    "Vitamin D (D2 + D3), International Units": 0.0,
+    "Sugars, added": 1.6,
+    "Cholesterol": 0.0,
+    "Fatty acids, total trans": 0.0,
+    "Fatty acids, total saturated": 0.0
+  }
+}

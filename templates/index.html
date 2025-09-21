@@ -2,42 +2,105 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Food Classifier</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 50px; }
-        .container { max-width: 500px; margin: auto; }
-        h1 { text-align: center; }
-        form { text-align: center; margin-bottom: 20px; }
-        .result { background: #f2f2f2; padding: 15px; border-radius: 8px; }
-        ul { list-style: none; padding-left: 0; }
-        li { margin-bottom: 5px; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriVision - Food Classification & Diet Tracking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Food Classifier</h1>
-        <form method="post" enctype="multipart/form-data">
-            <input type="file" name="file" required>
-            <br><br>
-            <button type="submit">Predict</button>
-        </form>
+        <header class="header">
+            <h1><i class="fas fa-utensils"></i> NutriVision</h1>
+            <p>AI-powered food classification and nutrition tracking</p>
+        </header>
 
-        {% if prediction %}
-        <div class="result">
-            <h3>Prediction:</h3>
-            <p>{{ prediction }}</p>
+        <div class="main-content">
+            <div class="upload-section">
+                <div class="upload-card">
+                    <h2><i class="fas fa-camera"></i> Identify Food</h2>
 
-            {% if nutrition %}
-            <h4>Nutrition:</h4>
-            <ul>
-                <li>Calories: {{ nutrition.calories }}</li>
-                <li>Carbs: {{ nutrition.carbs }} g</li>
-                <li>Protein: {{ nutrition.protein }} g</li>
-                <li>Fat: {{ nutrition.fat }} g</li>
-            </ul>
-            {% endif %}
+                    <!-- Hidden input OUTSIDE the upload area -->
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your food image here or click to browse</p>
+                        <button class="btn btn-primary" id="selectImageBtn">
+                            Select Image
+                        </button>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <label for="quantity">Quantity (grams):</label>
+                        <input type="number" id="quantity" value="100" min="1" max="1000">
+                    </div>
+                    
+                    <button class="btn btn-primary" id="analyzeBtn" disabled>
+                        <i class="fas fa-search"></i> Analyze Food
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="result-card">
+                    <h2><i class="fas fa-check-circle"></i> Analysis Results</h2>
+                    <div class="result-content">
+                        <div class="food-image-preview">
+                            <img id="foodImage" src="" alt="Food image">
+                        </div>
+                        <div class="food-info">
+                            <h3 id="foodName"></h3>
+                            <p class="confidence" id="confidence"></p>
+                            
+                            <div class="nutrition-facts">
+                                <h4>Nutrition Facts (for <span id="quantityDisplay"></span>g)</h4>
+                                <div class="nutrition-grid">
+                                    <div class="nutrition-item">
+                                        <i class="fas fa-fire"></i>
+                                        <span class="label">Calories</span>
+                                        <span class="value" id="calories"></span>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <i class="fas fa-dumbbell"></i>
+                                        <span class="label">Protein</span>
+                                        <span class="value" id="protein"></span>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <i class="fas fa-bread-slice"></i>
+                                        <span class="label">Carbs</span>
+                                        <span class="value" id="carbs"></span>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <i class="fas fa-oil-can"></i>
+                                        <span class="label">Fat</span>
+                                        <span class="value" id="fat"></span>
+                                    </div>
+                                    <div class="nutrition-item">
+                                        <i class="fas fa-seedling"></i>
+                                        <span class="label">Fiber</span>
+                                        <span class="value" id="fiber"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-success" id="logMealBtn">
+                                <i class="fas fa-plus"></i> Log This Meal
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meal-history">
+                <h2><i class="fas fa-history"></i> Meal History</h2>
+                <div class="meal-list" id="mealList">
+                    <p class="empty-state" id="emptyState">No meals logged yet. Analyze some food to get started!</p>
+                </div>
+            </div>
         </div>
-        {% endif %}
     </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

@@ -11,3 +11,4 @@ tqdm>=4.66.0
 
 # Optional but recommended
 numpy>=1.26.0
+requests
