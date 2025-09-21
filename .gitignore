@@ -1,0 +1,56 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+
+# ---- Jupyter / Logs ----
+.ipynb_checkpoints
+*.log
+*.out
+
+
+dataprep.py
+# ---- Virtual Environments ----
+venv/
+env/
+.vscode/
+.v1/
+.v2/
+.v3/
+.v4/
+.v5/
+.v6/
+.v7/
+.v8/
+.v9/
+
+# ---- OS Files ----
+.DS_Store
+Thumbs.db
+
+# ---- Data ----
+food_data_combined/
+food-101-mini/
+data/
+
+*.csv
+*.zip
+*.tar
+*.tar.gz
+*.rar
+
+# ---- Model Checkpoints ----
+runs/exp_combined_small/ckpt_epoch2.pth
+runs/exp_combined_small/ckpt_epoch4.pth
+model1/ckpt_epoch5.pth
+*.ckpt
+*.pth.tar
+
+# ---- Large Temporary Files ----
+*.tmp
+*.bak
+
+# ---- Cache ----
+*.cache
+.cache/

@@ -6,14 +6,14 @@ from torchvision import transforms, models
 import torch.nn as nn
 
 # ------------------ Settings ------------------ #
-IMAGE_PATH = "./examples/appl.webp"   
-set=1 
+IMAGE_PATH = "./examples/chic.jpg"   
+set=1
 if(set==0):         
- MODEL_PATH = "./model1/best_model.pth"  # Your trained model
- CLASS_MAP_PATH = "./model1/class_mapping.json"  
+    MODEL_PATH = "./model1/best_model.pth"  # Your trained model
+    CLASS_MAP_PATH = "./model1/class_mapping.json"  
 else:
- MODEL_PATH = "./runs/exp_combined_small/best_model.pth"  # Your trained model
- CLASS_MAP_PATH = "./runs/exp_combined_small/class_mapping.json"  
+    MODEL_PATH = "./runs/exp_combined_small/best_model.pth"  # Your trained model
+    CLASS_MAP_PATH = "./runs/exp_combined_small/class_mapping.json"  
     
 IMAGE_SIZE = 224
 
@@ -35,7 +35,7 @@ def build_model(num_classes, dropout=0.5, pretrained=True):
     )
     return model
 
-def predict_image(model, img_path, class_idx_to_name, device, image_size=224):
+def predict_image(model, img_path, class_data, device, image_size=224):
     transform = get_transform(image_size)
     image = Image.open(img_path).convert("RGB")
     x = transform(image).unsqueeze(0).to(device)
@@ -48,18 +48,19 @@ def predict_image(model, img_path, class_idx_to_name, device, image_size=224):
         pred = pred.item()
         conf = conf.item()
 
-    pred_class = class_idx_to_name[str(pred)]
-    return pred_class, conf
+    pred_class = class_data[str(pred)]["name"]
+    nutrition = class_data[str(pred)]["nutrition"]
+    return pred_class, conf, nutrition
 
 # ------------------ Main ------------------ #
 device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 print("Using device:", device)
 
-# Load class mapping
+# Load class mapping with nutrition data
 with open(CLASS_MAP_PATH, "r") as f:
-    idx_to_class = json.load(f)
+    class_data = json.load(f)
 
-num_classes = len(idx_to_class)
+num_classes = len(class_data)
 model = build_model(num_classes, dropout=0.5, pretrained=False)
 
 # Load checkpoint safely (backbone only if num_classes mismatch)
@@ -75,5 +76,11 @@ model.load_state_dict(model_dict)
 model = model.to(device)
 
 # Predict
-pred_class, conf = predict_image(model, IMAGE_PATH, idx_to_class, device, image_size=IMAGE_SIZE)
+pred_class, conf, nutrition = predict_image(model, IMAGE_PATH, class_data, device, image_size=IMAGE_SIZE)
 print(f"Prediction: {pred_class} (confidence: {conf:.3f})")
+print("\nNutritional Information (per 100g):")
+print(f"Calories: {nutrition['calories']} kcal")
+print(f"Protein: {nutrition['protein']}g")
+print(f"Carbs: {nutrition['carbs']}g")
+print(f"Fat: {nutrition['fat']}g")
+print(f"Fiber: {nutrition['fiber']}g")

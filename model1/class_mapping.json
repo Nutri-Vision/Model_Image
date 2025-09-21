@@ -1,8 +1,62 @@
 {
-  "0": "apple",
-  "1": "banana",
-  "2": "guava",
-  "3": "lime",
-  "4": "orange",
-  "5": "pomegranate"
+  "0": {
+    "name": "apple",
+    "nutrition": {
+      "calories": 52,
+      "protein": 0.3,
+      "carbs": 14,
+      "fat": 0.2,
+      "fiber": 2.4
+    }
+  },
+  "1": {
+    "name": "banana",
+    "nutrition": {
+      "calories": 89,
+      "protein": 1.1,
+      "carbs": 22.8,
+      "fat": 0.3,
+      "fiber": 2.6
+    }
+  },
+  "2": {
+    "name": "guava",
+    "nutrition": {
+      "calories": 68,
+      "protein": 2.6,
+      "carbs": 14.3,
+      "fat": 1.0,
+      "fiber": 5.4
+    }
+  },
+  "3": {
+    "name": "lime",
+    "nutrition": {
+      "calories": 30,
+      "protein": 0.7,
+      "carbs": 10.5,
+      "fat": 0.2,
+      "fiber": 2.8
+    }
+  },
+  "4": {
+    "name": "orange",
+    "nutrition": {
+      "calories": 47,
+      "protein": 0.9,
+      "carbs": 11.8,
+      "fat": 0.1,
+      "fiber": 2.4
+    }
+  },
+  "5": {
+    "name": "pomegranate",
+    "nutrition": {
+      "calories": 83,
+      "protein": 1.7,
+      "carbs": 18.7,
+      "fat": 1.2,
+      "fiber": 4.0
+    }
+  }
 }
